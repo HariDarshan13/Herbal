@@ -11,6 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { remedies } from '@/data/remedies';
 import { toast } from '@/hooks/use-toast';
 import { MessageSquare, Star, Send, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Feedback() {
   const { t, language } = useLanguage();
@@ -290,10 +291,10 @@ export default function Feedback() {
                     <div>Phone: +91 9876543210</div>
                   </div>
                   <Button variant="outline" className="w-full mt-3" asChild>
-                    <a href="/contact">
+                    <Link to="/contact">
                       {t('contactUs')}
-                    </a>
-                  </Button>
+                     </Link>
+                  </Button>   
                 </CardContent>
               </Card>
 
