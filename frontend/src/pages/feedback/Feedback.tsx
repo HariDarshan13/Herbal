@@ -35,12 +35,14 @@ export default function Feedback() {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/feedback`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+   try {
+  const res = await fetch("https://herbal-backend-un9h.onrender.com/api/feedbacks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
 
       const data = await res.json();
 
