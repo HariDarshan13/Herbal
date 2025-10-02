@@ -19,34 +19,38 @@ router.post("/", async (req, res) => {
     const newFeedback = new Feedback({ name, email, type, remedyId, rating, subject, message });
     await newFeedback.save();
 
-    // Configure nodemailer transporter
+    // Respond to frontend immediately
+    res.status(201).json({ message: "Feedback submitted successfully" });
+
+    // Send confirmation email asynchronously
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: process.env.GMAIL_USER, // your Gmail address
-        pass: process.env.GMAIL_PASS, // App Password
+        user: process.env.GMAIL_USER, // Gmail email
+        pass: process.env.GMAIL_PASS, // App password
       },
     });
 
-    // Email content
     const mailOptions = {
       from: process.env.GMAIL_USER,
       to: email,
       subject: "Thank you for your feedback!",
-      text: `Hi ${name},\n\nThank you for submitting your feedback on Herbal Heritage.\n\nWe appreciate your time and your valuable input!\n\n- Herbal Heritage Team`,
+      text: `Hi ${name},\n\nThank you for submitting your feedback on Herbal Heritage.\n\nWe appreciate your time and valuable input!\n\n- Herbal Heritage Team`,
     };
 
-    // Send email and wait for completion
-    await transporter.sendMail(mailOptions);
-    console.log(`✅ Feedback confirmation email sent to ${email}`);
-
-    // Respond to frontend
-    res.status(201).json({ message: "Feedback submitted successfully" });
+    transporter.sendMail(mailOptions)
+      .then(() => console.log(`✅ Feedback email sent to ${email}`))
+      .catch((err) => console.error("❌ Email send error:", err));
 
   } catch (err) {
     console.error("❌ Feedback submission error:", err);
-    res.status(500).json({ message: "Server error: " + err.message });
+
+    // Only send error if response hasn't already been sent
+    if (!res.headersSent) {
+      res.status(500).json({ message: "Server error: " + err.message });
+    }
   }
 });
 
 export default router;
+
