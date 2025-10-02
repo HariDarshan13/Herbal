@@ -132,7 +132,7 @@ export default function SubmitRemedy() {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/remedies`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'https://herbal-backend-un9h.onrender.com'}/api/remedies`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
