@@ -17,7 +17,7 @@ import { toast } from "@/hooks/use-toast";
 import { LogIn, Loader2 } from "lucide-react";
 
 // Backend URL from .env
-const API_URL = "http://localhost:5000";
+const API_URL = "https://herbal-backend-un9h.onrender.com";
 
 export default function Login() {
   const [email, setEmail] = useState<string>("");
