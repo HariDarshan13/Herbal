@@ -36,7 +36,7 @@ export default function Feedback() {
     setIsLoading(true);
 
    try {
-  const res = await fetch("https://herbal-backend-un9h.onrender.com/api/feedbacks", {
+  const res = await fetch("https://herbal-backend-un9h.onrender.com/api/feedback", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
