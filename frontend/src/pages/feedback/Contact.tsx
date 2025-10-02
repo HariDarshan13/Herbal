@@ -29,39 +29,28 @@ export default function Contact() {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const res = await fetch('https://herbal-backend-un9h.onrender.com/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+   const res = await fetch('https://herbal-backend-un9h.onrender.com/api/contact', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData),
+});
 
-      const data = await res.json();
+const data = await res.json();
 
-      if (!res.ok) throw new Error(data.message || 'Something went wrong');
-
-      toast({
-        title: 'Message Sent',
-        description: data.message,
-      });
-
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-        urgency: 'medium'
-      });
-    } catch (err: any) {
-      toast({
-        title: 'Error',
-        description: err.message,
-        variant: 'destructive',
-      });
-    }
-
-    setIsLoading(false);
-  };
+if (res.ok) {
+  toast({
+    title: 'Success',
+    description: data.message,
+  });
+  setFormData({ name: '', email: '', subject: '', message: '', urgency: '' });
+} else {
+  toast({
+    title: 'Error',
+    description: data.message || 'Something went wrong',
+    variant: 'destructive',
+  });
+}
+setIsLoading(false);
 
   return (
     <Layout>
