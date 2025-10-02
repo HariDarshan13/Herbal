@@ -132,14 +132,13 @@ export default function SubmitRemedy() {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL || 'https://herbal-backend-un9h.onrender.com'}/api/remedies`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-      });
-
+  const res = await fetch("https://herbal-backend-un9h.onrender.com/api/remedies", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  });
       if (!res.ok) {
         throw new Error("Failed to submit remedy");
       }
