@@ -20,7 +20,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:8080", // Adjust to your frontend URL
+    origin: process.env.CLIENT_URL || "https://herbal-frontend.onrender.com", // Adjust to your frontend URL
     credentials: true,
   })
 );
