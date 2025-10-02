@@ -16,7 +16,7 @@ import { toast } from "@/hooks/use-toast";
 import { UserPlus, Loader2 } from "lucide-react";
 
 // Backend URL from .env
-const API_URL: string = import.meta.env.VITE_BACKEND_URL || "https://herbal-backend-un9h.onrender.com";
+const API_URL="https://herbal-backend-un9h.onrender.com";
 
 export default function Register() {
   const [name, setName] = useState<string>("");
