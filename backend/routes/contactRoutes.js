@@ -1,6 +1,7 @@
 import express from 'express';
 import nodemailer from 'nodemailer';
 
+import Contact from '../models/Contact.js'; // Adjust path as needed
 
 const router = express.Router();
 
